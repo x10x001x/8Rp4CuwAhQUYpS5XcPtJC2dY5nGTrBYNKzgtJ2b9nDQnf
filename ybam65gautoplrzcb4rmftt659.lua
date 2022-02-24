@@ -56,13 +56,15 @@ if survival() then
     end)
 end
 
-function a:Upgrade(n,wave)
+function a:Upgrade(n,lvl,wave)
 spawn(function()
     if survival() then
        repeat wait() until workspace:FindFirstChild("Map")
        repeat wait() until workspace.Towers:FindFirstChild(n)
        repeat wait() until workspace.Waves:FindFirstChild("Wave").Value == wave
+           repeat wait()
             workspace.UpgradeTower:InvokeServer(n)
+           until workspace.Towers[n].Tower.UP1.Value == lvl
         end
     end)
 end
